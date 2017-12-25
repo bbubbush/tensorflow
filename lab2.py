@@ -15,7 +15,32 @@ train = optimizer.minimize(cost)
 sess  =tf.Session()
 sess.run(tf.global_variables_initializer())
 
-for step in range(2001):
+for step in range(4001):
 	sess.run(train)
 	if step % 20 == 0:
 		print(step, sess.run(cost), sess.run(W), sess.run(b))
+
+
+# More code
+print()
+
+X = tf.placeholder(tf.float32, shape=[None])
+Y = tf.placeholder(tf.float32, shape=[None])
+
+H = W * X + b
+cost = tf.reduce_mean(tf.square(H - Y))
+optimizer = tf.train.GradientDescentOptimizer(learning_rate = 0.01)
+tarin = optimizer.minimize(cost)
+
+sess.run(tf.global_variables_initializer())
+
+for step in range(4001):
+        cost_val, W_val, b_val, _ = sess.run([cost, W, b, train],
+                                           feed_dict = {X: [1, 2, 3, 4, 5], Y: [2.1, 3.1, 4.1, 5.1, 6.1]})
+        if step % 20 == 0:
+                print(step, cost_val, W_val, b_val)
+             
+
+'''
+for문의 반복횟수가 많이질수록 답에 근접한 값이 리턴
+'''
