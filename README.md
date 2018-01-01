@@ -66,7 +66,7 @@ cost를 minimize하는데 사용하지만 이 외에도 많은 곳에서 사용�
 
 경사도를 구하는 방법은 미분을 이용한다.
 
-**W := W - a(sum((Wx^i - y^i)x^i) / m)**이 최종적인 Gradient descent algoritym이 된다. 미분을 통해 기울기를 구해 W 값에서 다음 기울기로 이동하면서 비교하게 한다.
+**W := W - a(sum((Wx^i - y^i)x^i) / m)** 이 최종적인 Gradient descent algoritym이 된다. 미분을 통해 기울기를 구해 W 값에서 다음 기울기로 이동하면서 비교하게 한다.
 
 **Convex function**
 x축을 W, y축을 b, z축을 cost(W, b)의 값으로 할 때, 밥그릇이 뒤집어진 모양의 형태를 Convex function이라고 한다.
