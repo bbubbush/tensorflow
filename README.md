@@ -24,3 +24,20 @@ Linear(선형) : y의 범위가 몇개의 단계로 나눠지는 방법 traning 
 	- 좋은 가설은 실제 데이터와 가설간의 데이터 갭이 적은 것이다
 	- (H(x)-y)^2을 통해 차이를 비교  (이것을 cost function이라고 함)
 	- minimize cost(W, b)를 가장 작게 하는 W, b를 구하는 것이 학습의 목표
+
+#### [ Lecture 3. How to minimize cost ]
+Hypothesis and Cost
+H(x) = Wx + b
+cost(W,b) = sum((H(x^i)-y^i)^2) / m
+
+이것이 기본 식인데 간편함을 위해 b값을 제거
+H(x) = Wx
+cost(W) = sum((Wx^i - y^i)^2) / m (Hypothesis의 값을 대체하지 않고 그대로 사용)
+
+이 식을 minimize 하기 위해 cosw(W)의 값을 찾아보기
+
+|x|y|
+|1|1|
+|2|2|
+|3|3|
+위와 같은 dataset이 있을 때 W = 1, cost(W) = ?
