@@ -37,7 +37,7 @@ cost(W) = sum((Wx^i - y^i)^2) / m (Hypothesis의 값을 대체하지 않고 그�
 이 식을 minimize 하기 위해 cosw(W)의 값을 찾아보기
 
  x | y 
-| ---
+---|---
  1 | 1 
  2 | 2 
  3 | 3 
