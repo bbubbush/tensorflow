@@ -1,4 +1,7 @@
 import tensorflow as tf
+
+'''
+
 # 기존의 방법으로 linear regression을 만드는 방법
 x1_data = [73., 93., 89., 96., 73.]
 x2_data = [80., 88., 91., 98., 66.]
@@ -69,3 +72,18 @@ for step in range(20001):
 	if step % 20000 == 0:
 		print(step, 'Cost:', cost_val, '\nPridiction:\n', hy_val)
 
+
+
+
+'''
+
+
+# 이번엔 파일에서 데이터 읽어오기
+import numpy as np
+
+xy = np.loadtxt('data-01-test-score.csv', delimiter=',', dtype=np.float32)
+x_data = xy[:, 0:-1]
+y_data = xy[:, [-1]]
+
+print(x_data.shape, x_data, len(x_data))
+print(y_data.shape, y_data)
