@@ -90,5 +90,33 @@ x축을 W, y축을 b, z축을 cost(W, b)의 값으로 할 때, 밥그릇이 뒤�
 
 여기서부터가 본격적인 ML의 입문이다.
 
+### [ Lecture 5-1. Logistic (regression) classification ]
 
+뉴럴네트워킹과 딥러닝에 활용되는 개념.
+
+이번 강의에서 하는 것은 Birary Classification, 즉 둘 중 하나를 고르는 것이다. 스팸메일 or 햄메일, 맞춤게시물을 보여줄지 or 말지 등
+
+기존 Linear regression을 사용하게 되면 튀는 데이터가 등장했을 때 다른 데이터에 큰 영향을 끼칠 수 있다. 또한 H(x) = Wx + b의 식은 0~1의 값을 도출해야 하는 binary에 적합하지 않아 가설을 수정해야 한다. 
+
+Logistic Hypothesis(sigmoid 혹은 logistic function이라고 부름) : H(X) = 1/1+e^(-WX)
+
+이제는 cost함수의 형태를 봐야 하는데 sigmoid의 형태를 그래프로 그리면 완곡한 2차함수가 아닌 울퉁불퉁한 2차함수가 만들어진다. 따라서 시작하는 위치에 따라서 최소값이 제각기 다르게 되어(local minimum) 우리가 찾고자 하는 진짜 최소값(global minimum)을 못구한다.
+
+따라서 이번에도 Linear와 다른 새로운 cost function이 필요하다.
+
+C(H(z), y) = y = 1일 때 -log(H(x)), y = 0 일 때 -log(1-H(x))
+
+두가지 케이스로 나누어서 적용시킨다. 지수의 상극, 반대가 되는 것이 log기 때문에 log로 지수의 값이 커지는 것을 잡아준다.
+
+Y = 1, H(x) = 1일 때, cost를 계산하면 -log(1) = 0
+Y = 1, H(x) = 0일 때, cost를 계산하면 -log(0) = 무한대(log(x)의 x값이 무한히 작아지면 결과값은 무한히 작아지는데 앞에 -가 붙어 무한히 커지게 변한다)
+
+Y = 0, H(x) = 1일 때, cost를 계산하면 -log(0) = 무한대
+Y = 0, H(x) = 0일 때, cost를 계산하면 -log(1) = 0
+
+그러나 이렇게 분기로 식을 두면 코딩을 할 때 복잡해지므로 식을 하나로 합쳤다. 
+
+>c(H(x), y) = -ylog(H(x))-(1-y)log(1-H(x))
+
+Minimize cost는 앞서 cost function을 매끄러운 2차함수로 만들었기 때문에 기존의 방법을 통해 최소화 시키면 된다.
 
