@@ -90,7 +90,7 @@ x축을 W, y축을 b, z축을 cost(W, b)의 값으로 할 때, 밥그릇이 뒤�
 
 여기서부터가 본격적인 ML의 입문이다.
 
-### [ Lecture 5-1. Logistic (regression) classification ]
+### [ Lecture 5. Logistic (regression) classification ]
 
 뉴럴네트워킹과 딥러닝에 활용되는 개념.
 
@@ -120,3 +120,22 @@ Y = 0, H(x) = 0일 때, cost를 계산하면 -log(1) = 0
 
 Minimize cost는 앞서 cost function을 매끄러운 2차함수로 만들었기 때문에 기존의 방법을 통해 최소화 시키면 된다.
 
+### [ Lecture 6. Softmax Regression ]
+
+여기가 조금 복잡함.
+
+x라는 입력을 W을 가지고 계산을 한 값을 z값인데 이것을 sigmod에 넣어 Y`값을 만드는데 Y`는 0~1까지의 값을 나타낸다.
+
+Logistic regression은 결국 이분법이기때문에 두 값의 경계를 나타내는 선분의 기울기를 찾으면 된다. Multinomial classificatiion역시 마찬가지다 Y값이 여러개가 되면 각각의 Y값을 구분하는 경계선을 각각 찾아보는 것이다. 
+
+이렇게 수식을 정리하면 행렬형태로 나오는데 Y값 하나당 수식 하나씩 나오는 것을 합쳐서 Y값 n개의 수식을 n, X값 m개를 행렬로 표기하면 
+
+(n,m) * (m,1)의 형태로 나오게 된다. 이 값은 아직 sigmod가 되지 않아 1 이상의 수치가 나올 수 있어서 각각의 값을 Softmax regression을 활용해 수치를 0~1의 값을 갖게 조정한다.
+
+Softmax 특징은 1. 항목에 대한 값이 0~1 사이의 값이 나오고, 2. 모든 항목의 값을 합치면 1이 되어야 한다.
+
+이렇게 0~1 사이의 값을 One-Hot Encoding 기법을 통해 가장 수치가 큰 값을 1로, 나머지 값을 0으로 변환하여 하나의 결과가 나오게 표기해준다.
+
+cost function은 cross-entropy를 사용한다. 복잡해 보이지만 Logistic cost function( -ylog(H(x))-(1-y)log(1-H(x)) )이 사실상 cross-entropy였다.
+
+다음으로는 Gradient descent를 활용해 cost를 최소화 시킨다. 
