@@ -139,3 +139,9 @@ Softmax 특징은 1. 항목에 대한 값이 0~1 사이의 값이 나오고, 2. 
 cost function은 cross-entropy를 사용한다. 복잡해 보이지만 Logistic cost function( -ylog(H(x))-(1-y)log(1-H(x)) )이 사실상 cross-entropy였다.
 
 다음으로는 Gradient descent를 활용해 cost를 최소화 시킨다. 
+
+추가사항 
+
+>cross entropy = D(S, L) = reduce_mean(reduce_sum(L * -log(S)))
+
+Y의 값이 lable로 입력되는 것이 아니라 [[0,0,1], [1,0,0]...] 이런식으로 입력되면 one_hot 이라 한다. lable로 입력될 경우 reshape를 활용해서 차원을 한단계 낮추는 기술이 필요하다.(tf에서 제공하는 one_hot은 return값의 r이 +1 되어 나오기 때문에 -1을 해주기 위해 필요하다)
