@@ -122,7 +122,7 @@ Minimize cost는 앞서 cost function을 매끄러운 2차함수로 만들었기
 
 ### [ Lecture 6. Softmax Regression ]
 
-여기가 조금 복잡함.
+(이 부분을 학습하면서 내가 얼마나 얉게 알고 지나가는지 알게되었다. 그래도 완벽한 이해를 하며 넘어가기 보다 지금은 큰 그림을 보고 심화학습을 추후에 해야할거같단 생각이 들어 진도를 먼저 진행해보겠다)
 
 x라는 입력을 W을 가지고 계산을 한 값을 z값인데 이것을 sigmod에 넣어 Y`값을 만드는데 Y`는 0~1까지의 값을 나타낸다.
 
@@ -145,3 +145,38 @@ cost function은 cross-entropy를 사용한다. 복잡해 보이지만 Logistic 
 >cross entropy = D(S, L) = reduce_mean(reduce_sum(L * -log(S)))
 
 Y의 값이 lable로 입력되는 것이 아니라 [[0,0,1], [1,0,0]...] 이런식으로 입력되면 one_hot 이라 한다. lable로 입력될 경우 reshape를 활용해서 차원을 한단계 낮추는 기술이 필요하다.(tf에서 제공하는 one_hot은 return값의 r이 +1 되어 나오기 때문에 -1을 해주기 위해 필요하다)
+
+### [ Lecture 7-1. Application & Tips: Learning rate, data preprocessing, overfitting ]
+
+세 방법 모두 오류를 줄이고 보다 바른 학습을 위해 사용하는 개념이다.
+
+1. Learning rate  
+우리가 cost function을 minimize하기 위해 사용하는 learning_rate는 너무 크면 overshooting이 일어난다. 내려가는 정도가 너무 강해 최소값으로 가지 못하고 그 근처를 왔다갔다하거나, 너무 크게 되면 밖으로 나가게 된다. 이것을 overshooting이라고 한다. 이럴 경우 값이 숫자가 나오지 않거나, 값이 점점 커지면 의심해봐야한다.
+
+반대로 너무 작으면 for문을 다 돌아도 최소값에 도달하지 못하게 된다. 너무 작게 움직이기 때문이다. 따라서 처음에는 0.01을 기준으로 값이 발산하면 값을 줄이고, cost가 아직도 큰 값을 유지하는것 같다면 값을 키우는 등 유연하게 대처할 수 있다.
+
+2. Data preprocessing(데이터 선처리)  
+x의 data set 중 편차가 심한 인자가 포함되면 값의 편차가 너무 크게된다. 이는 후에 오차로 나타나게 되는데 이를 줄이기 위해 데이터를 선처리한다. 보통 zero-centered data를 시켜 영점을 잡고, normalized data를 통해 편차를 줄인다.(일정한 범위 안에서 다 표현이 되도록 변화시킨다)
+
+[Nomalizetion 중 아래의 형태를 Standardizetion이라고 한다]
+x_std[:, 0] = (X[:, 0] - X[:, 0].mean()) / X[:, 0].std()
+
+3. Overfitting(가장 큰 문제가 됨)
+학습 데이터에만 딱 맞는 모델이 나오게 되어 실제 데이터를 활용함에 있어 제약이 생기는 경우를 Overfitting이라고 한다.
+
+[overfitting을 줄이는 방법]
+- training data를 많이 확보한다
+- features의 중복을 줄이고 개수를 줄인다
+- Regularization을 활용한다
+
+Regularization이란 model의 구분선이 곡선이 많을 수록 실 데이터에 사용하기에 문제가 있기 때문에 weight를 낮은 값으로 주어 곡선을 최소화 시킨다. 이것을 하기 위해선 cost function에 regularization_strength*tf.reduce_sum(tf.square(W)) 를 더한다. (regularization_strength값이 0에 가까울 수록 적은 변화를, 높을수록 큰 변화를 준다)
+
+### [ Lecture 7-2. Application & Tips: Learning and test data sets ]
+
+training set을 통해 학습한 모델에 다시 training set을 가지고 물어보면 100%의 답을 낼 것이다. 하지만 이것은 나쁜 방법이다. 모든 데이터를 경험했기 때문에 model은 100%의 답만 도출할 것이다. 따라서 전체 training set을 뒤에 1/3정도를 test set으로 사용하며 이 값은 training 하지 않는다. 그럼 약 2/3로 학습된 데이터를 통해 나온 model에 test set을 넣어 신뢰도를 측정할 수 있다. 
+
+여기서 더 나아가면 위의 Training set의 뒤의 30%를 Validation set으로 활용한다. 이처럼 크게 둘로 나누는 방법과 셋으로 나누는 방법이 많이 사용하는 방법이다. 
+
+Online learning은 training set이 너무 많을 경우 한번에 다 학습하는데 큰 자원과 시간이 소모된다. 따라서 이를 여러 등분해서 학습을 하면서 학습된 결과를 model에 남기는 방법을 Online learning이라고 한다. 매번 데이터가 추가될 때 마다 추가된 내용만 학습하면 되기 때문에 좋은 방법이다. 대표적인 예제가 MNIST Dataset이다.
+
+이제 test set이 얼마나 맞았는지 확인하여 정확도를 산출하며 image쪽에서는 95~99%의 정확도가 유의미하게 사용된다.
