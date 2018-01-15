@@ -180,3 +180,11 @@ training set을 통해 학습한 모델에 다시 training set을 가지고 물�
 Online learning은 training set이 너무 많을 경우 한번에 다 학습하는데 큰 자원과 시간이 소모된다. 따라서 이를 여러 등분해서 학습을 하면서 학습된 결과를 model에 남기는 방법을 Online learning이라고 한다. 매번 데이터가 추가될 때 마다 추가된 내용만 학습하면 되기 때문에 좋은 방법이다. 대표적인 예제가 MNIST Dataset이다.
 
 이제 test set이 얼마나 맞았는지 확인하여 정확도를 산출하며 image쪽에서는 95~99%의 정확도가 유의미하게 사용된다.
+
+**arg_max와 argmax의 차이**
+
+>WARNING:tensorflow:From F:\PYTHON\tensorflow\lab7-3.py:24: arg_max (from tensorflow.python.ops.gen_math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use `argmax` instead
+
+arg_max함수를 사용하다보면 이런 경고문이 출력이 된다. 버전간 호환을 위해 기존에 사용하던 arg_max함수를 지우지 않고 유지하면서, argmax를 사용하길 권고하는 안내이자 경고문이다. 두 함수의 차이가 존재하는지 바꿔서 사용해도 경고문의 출력 여부만 다를뿐 결과에 대한 차이는 없다. 그러니 앞으로는 tf 개발자가 권고한대로 argmax를 사용하겠다.
