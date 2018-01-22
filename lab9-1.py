@@ -152,7 +152,8 @@ with tf.Session() as sess:
 
 '''
 4. XOR을 Neural Net으로 구하기. (wide = 10, deep = 4)
-
+wide와 deep에 따라 정확도가 변한다. 효율적인 wide와 deep의 수치를 설정하는 것이 중요하다. 이 둘이 크면 클수록 정확도는 올라가지만 
+시간이 비약적으로 상승하기 때문이다.
 
 '''
 
