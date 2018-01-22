@@ -175,13 +175,13 @@ Y = tf.placeholder(tf.float32)
 wide, deep = 10, 4
 
 # list 형태로 만듬 
-W_list = [tf.Variable(tf.random_normal([2, wide]), name = 'weight1')]
-b_list = [tf.Variable(tf.random_normal([wide]), name = 'bias1')]
+W_list = [tf.Variable(tf.random_normal([2, wide]))]
+b_list = [tf.Variable(tf.random_normal([wide]))]
 layer_list = [tf.sigmoid(tf.matmul(X, W_list[-1])+b_list[-1])]
 
 for deep in range(deep-2):
-	W_list.append(tf.Variable(tf.random_normal([wide, wide]), name = 'weight1'))
-	b_list.append(tf.Variable(tf.random_normal([wide]), name = 'bias1'))
+	W_list.append(tf.Variable(tf.random_normal([wide, wide])))
+	b_list.append(tf.Variable(tf.random_normal([wide])))
 	layer_list.append(tf.sigmoid(tf.matmul(layer_list[-1], W_list[-1])+b_list[-1]))
 
 W4 = tf.Variable(tf.random_normal([wide, 1]), name = 'weight4')
