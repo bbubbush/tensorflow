@@ -190,7 +190,7 @@ b4 = tf.Variable(tf.random_normal([1]), name = 'bias4')
 hypothesis = tf.sigmoid(tf.matmul(layer_list[-1], W4)+b4)
 
 
-'''
+''' 
 # 원래 형태
 W1 = tf.Variable(tf.random_normal([2, 10]), name = 'weight1')
 b1 = tf.Variable(tf.random_normal([10]), name = 'bias1')
