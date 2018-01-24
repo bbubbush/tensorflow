@@ -58,7 +58,7 @@ update = W.assign(descent)	# tf에서는 equal 대입이 아니라 assign을 사
 '''
 
 # 위 4줄의 수동으로 작성한 코드를 tf는 이렇게 제공함
-optimizer = tf.train.GradientDescentOptimizer(learning_rate = 0.5)
+optimizer = tf.train.GradientDescentOptimizer(learning_rate = 0.01)
 train = optimizer.minimize(cost)
 
 sess = tf.Session()

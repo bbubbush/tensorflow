@@ -76,8 +76,36 @@ with tf.Session() as sess:
                        feed_dict={X: x_data, Y: y_data})
     print("\nHypothesis: ", h, "\nCorrect: ", c, "\nAccuracy: ", a)
 
-# Gredient Descent Algorithm을 통해 Tensor board에 그려보기
+'''
+# 기본적인 ML을 tensorboard로 표현해보기
+x_train = [1, 2, 3]
+y_train = [1, 2, 3]
 
-x_data = [1, 2, 3]
-y_data = [1, 2, 3]
+W = tf.Variable(tf.random_normal([1]), name = 'weight')
+b = tf.Variable(tf.random_normal([1]), name = 'bias')
 
+hypothesis = x_train * W + b
+
+cost = tf.reduce_mean(tf.square(hypothesis - y_train))
+cost_summ = tf.summary.scalar('cost', cost)
+optimizer = tf.train.GradientDescentOptimizer(learning_rate = 0.01)
+train = optimizer.minimize(cost)
+
+predicted = tf.cast(hypothesis > 0.5, dtype=tf.float32)
+accuracy = tf.reduce_mean(tf.cast(tf.equal(predicted, y_train), dtype=tf.float32))
+accuracy_summ = tf.summary.scalar("accuracy", accuracy)
+
+w_hist = tf.summary.histogram('w', W)
+b_hist = tf.summary.histogram('b', b)
+with tf.Session() as sess:
+  sess.run(tf.global_variables_initializer())
+  merged_summary = tf.summary.merge_all()
+  writer = tf.summary.FileWriter('./logs/basic')
+  writer.add_graph(sess.graph)
+
+  for step in range(1001):
+    s, _ = sess.run([merged_summary, train])
+    writer.add_summary(s, global_step=step)
+    if step % 100 == 0:
+      print(step, sess.run(cost), sess.run(W), sess.run(b))
+'''      

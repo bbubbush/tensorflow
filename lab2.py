@@ -40,7 +40,3 @@ for step in range(4001):
         if step % 20 == 0:
                 print(step, cost_val, W_val, b_val)
              
-
-'''
-for문의 반복횟수가 많이질수록 답에 근접한 값이 리턴
-'''
