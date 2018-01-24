@@ -263,3 +263,36 @@ f(x,y) = x+y, af/ax의 값은 x만 영향을 끼치므로 y값은 상수취급�
 
 f(g(x)) == af/ax == (af/ag) * (ag/ax) 이 된다.  
 식으로 적으면 어려운데 의미를 생각해보면 'g에 대한 x의 영향력과 f에 대한 g의 영향력'이라고 생각하면 조금 더 쉽게 와닿는다. 이렇게 두번에 걸쳐 구한 미분값을 서로 곱하면 f(g(x))의 값이 된다. 
+
+### [ Special Lecture : Tensor Board ]
+
+기존의 숫자를 사용하여 cost를 확인했는데, 시각화 시켜서 보기위해 tensor board를 사용한다.
+
+**[사용순서]**
+
+1. From TF graph, decide which tensors you want to log.(어떤 tensor를 log할지 정함)
+<code>
+foo_hist = tf.summary.histogram('foo', foo)
+cost = tf.summary.scalar('cost', cost)
+</code>
+
+2. Merge all summaries.(summary를 모두 합침)
+<code>
+# 한번에 summary하기 위함
+summary = tf.summary.merge_all()
+</code>
+
+3. Create writer and add graph.(기록 위치를 정하고 graph를 추가)
+<code>
+writer = tf.summary.FileWriter('./logs')
+writer.add_graph(sess.graph)
+</code>
+
+4. Run summary merge and add_summary.(run시에 summary도 함께 해주며 기록해준다.)
+<code>
+s, _ = sess.run([summary, optimizer], feed_dic=blah)
+writer.add_summary(s, global_step=global_step)
+</code>
+
+5. Launch TensorBoard.(실행한다.)
+> cmd에서 tensorboard --logdir=./logs   후 localhost:6006에 접속
