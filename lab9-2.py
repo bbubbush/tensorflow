@@ -76,15 +76,8 @@ with tf.Session() as sess:
                        feed_dict={X: x_data, Y: y_data})
     print("\nHypothesis: ", h, "\nCorrect: ", c, "\nAccuracy: ", a)
 
+# Gredient Descent Algorithm을 통해 Tensor board에 그려보기
 
-'''
-Hypothesis:  [[  6.13103184e-05]
- [  9.99936938e-01]
- [  9.99950767e-01]
- [  5.97514772e-05]]
-Correct:  [[ 0.]
- [ 1.]
- [ 1.]
- [ 0.]]
-Accuracy:  1.0
-'''
+x_data = [1, 2, 3]
+y_data = [1, 2, 3]
+

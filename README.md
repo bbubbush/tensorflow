@@ -271,28 +271,32 @@ f(g(x)) == af/ax == (af/ag) * (ag/ax) 이 된다.
 **[사용순서]**
 
 1. From TF graph, decide which tensors you want to log.(어떤 tensor를 log할지 정함)
+
 	<code>
 	foo_hist = tf.summary.histogram('foo', foo)  
 	cost = tf.summary.scalar('cost', cost)
 	</code>
 
-2. Merge all summaries.(summary를 모두 합침)
+2. Merge all summaries.(한번에 summary 하기 위해 모두 합침)
+
 	<code>
-	# 한번에 summary하기 위함
 	summary = tf.summary.merge_all()
 	</code>
 
 3. Create writer and add graph.(기록 위치를 정하고 graph를 추가)
+
 	<code>
 	writer = tf.summary.FileWriter('./logs')  
 	writer.add_graph(sess.graph)
 	</code>
 
 4. Run summary merge and add_summary.(run시에 summary도 함께 해주며 기록해준다.)
+
 	<code>
 	s, _ = sess.run([summary, optimizer], feed_dic=blah)  
 	writer.add_summary(s, global_step=global_step)
 	</code>
 
 5. Launch TensorBoard.(실행한다.)
+
 	> cmd에서 tensorboard --logdir=./logs   후 localhost:6006에 접속
