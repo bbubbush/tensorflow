@@ -303,3 +303,5 @@ f(g(x)) == af/ax == (af/ag) * (ag/ax) 이 된다.
 5. Launch TensorBoard.(실행한다.)
 
 	> cmd에서 tensorboard --logdir=./logs   후 localhost:6006에 접속
+
+## ~~(취업준비로 인해 당분간 잠정 중단)~~ 
