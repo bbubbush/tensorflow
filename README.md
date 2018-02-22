@@ -28,11 +28,11 @@ Linear(선형) : y의 범위가 몇개의 단계로 나눠지는 방법 traning 
 #### [ Lecture 3. How to minimize cost ]
 **Hypothesis and Cost**
 
-H(x) = Wx + b
+H(x) = Wx + b  
 cost(W,b) = sum((H(x^i)-y^i)^2) / m
 
-이것이 기본 식인데 간편함을 위해 b값을 제거
-H(x) = Wx
+이것이 기본 식인데 간편함을 위해 b값을 제거  
+H(x) = Wx  
 cost(W) = sum((Wx^i - y^i)^2) / m (Hypothesis의 값을 대체하지 않고 그대로 사용)
 
 이 식을 minimize 하기 위해 cosw(W)의 값을 찾아보기
