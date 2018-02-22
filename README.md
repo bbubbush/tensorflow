@@ -19,11 +19,11 @@ Tensor는 Array를 말함
 3. Types : 데이터 타입
 
 #### [ Lecture 2. Linear Regression ]
-Linear(선형) : y의 범위가 몇개의 단계로 나눠지는 방법 traning data 필요
-	- H(x) = Wx + b의 형태로 나온다고 가설을 세움
-	- 좋은 가설은 실제 데이터와 가설간의 데이터 갭이 적은 것이다
-	- (H(x)-y)^2을 통해 차이를 비교  (이것을 cost function이라고 함)
-	- minimize cost(W, b)를 가장 작게 하는 W, b를 구하는 것이 학습의 목표
+Linear(선형) : y의 범위가 몇개의 단계로 나눠지는 방법 traning data 필요  
+- H(x) = Wx + b의 형태로 나온다고 가설을 세움
+- 좋은 가설은 실제 데이터와 가설간의 데이터 갭이 적은 것이다
+- (H(x)-y)^2을 통해 차이를 비교  (이것을 cost function이라고 함)
+- minimize cost(W, b)를 가장 작게 하는 W, b를 구하는 것이 학습의 목표
 
 #### [ Lecture 3. How to minimize cost ]
 **Hypothesis and Cost**
